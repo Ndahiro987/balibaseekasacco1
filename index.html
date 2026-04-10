@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bali Baseeka Sacco - Your Trusted Savings Partner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="mainHeader"> <div class="header-top"> <div class="container"> <div class="logo"> <div class="logo-icon"> <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo"> </div> <div class="logo-text"> <h1>Bali Baseeka</h1> <span>Sacco Services</span> </div> </div> <div class="header-actions"> <a href="login.html" class="login-btn">Member Login</a> <a href="admin-login.html" class="admin-btn">Admin Login</a> </div> </div> </div> <div class="header-bottom"> <div class="container"> <nav class="nav desktop-nav"> <ul> <li><a href="index.html">Home</a></li> <li><a href="about.html">About</a></li> <li><a href="services.html">Services</a></li> <li><a href="membership.html">Join Us</a></li> <li><a href="faq.html">FAQs</a></li> <li><a href="contact.html">Contact</a></li> </ul> </nav> <div class="hamburger" id="hamburger" onclick="toggleMenu()"> <span></span> <span></span> <span></span> </div> </div> </div> </header>
+    
+    <!-- Mobile Menu Styles -->
+    <style>
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-white);
+            z-index: 9999;
+            transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-header .logo-text h1 {
+            color: white;
+            font-size: 18px;
+        }
+        
+        .close-menu {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+        
+        .mobile-menu-content {
+            padding: 20px;
+        }
+        
+        .mobile-section {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-section h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            margin-bottom: 5px;
+        }
+        
+        .mobile-link:hover {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            transform: translateX(10px);
+        }
+        
+        .mobile-link i {
+            width: 25px;
+            color: var(--secondary-color);
+        }
+        
+        .mobile-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+        
+        .mobile-menu-footer {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+        
+        .mobile-menu-footer p {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .mobile-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .mobile-social a:hover {
+            background: var(--secondary-color);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hamburger Animation */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10000;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        @media (max-width: 992px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+    
+    <script>
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Create overlay if not exists
+            let overlay = document.querySelector('.menu-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'menu-overlay';
+                overlay.onclick = toggleMenu;
+                document.body.appendChild(overlay);
+            }
+            
+            overlay.classList.toggle('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        // Close menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+        
+        // Scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Empowering Your Financial Future</h1>
+                <p>Join Bali Baseeka Sacco and experience secure savings, affordable loans, and expert financial guidance. Together, we grow stronger.</p>
+                <div class="hero-buttons">
+                    <a href="#membership" class="btn btn-primary">Become a Member</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-number" data-target="0">0</div>
+                        <div class="stat-label">Happy Members</div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div class="stat-number" data-target="0">0</div>
+                        <div class="stat-label">Savings Portfolio</div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-building-columns"></i>
+                        <div class="stat-number" data-target="0">0</div>
+                        <div class="stat-label">Years of Service</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Who We Are</span>
+                <h2>About Bali Baseeka Sacco</h2>
+                <p>We are a community-driven savings and credit cooperative committed to uplifting our members through sustainable financial solutions.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To provide accessible financial services that empower our members to achieve economic independence and collective growth.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be the most trusted cooperative financial institution, delivering excellence in savings and credit services.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Transparency, integrity, member focus, teamwork, and social responsibility guide everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">What We Offer</span>
+                <h2>Our Services</h2>
+                <p>Comprehensive financial solutions tailored to meet your unique needs.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>Savings Account</h3>
+                    <p>Secure your future with our high-yield savings accounts. Start saving with as little as UGX 1,000 and watch your money grow.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Competitive interest rates</li>
+                        <li><i class="fas fa-check"></i> No hidden charges</li>
+                        <li><i class="fas fa-check"></i> Easy withdrawal access</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sack-dollar"></i>
+                    </div>
+                    <h3>Loans & Credit</h3>
+                    <p>Access quick, affordable loans for business, education, housing, or personal needs with flexible repayment plans.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Low interest rates</li>
+                        <li><i class="fas fa-check"></i> Quick approval process</li>
+                        <li><i class="fas fa-check"></i> Flexible terms</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Group Lending</h3>
+                    <p>Join with friends, family, or colleagues to access larger loans through our trusted group lending program.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Shared responsibility</li>
+                        <li><i class="fas fa-check"></i> Higher loan limits</li>
+                        <li><i class="fas fa-check"></i> Community support</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-umbrella"></i>
+                    </div>
+                    <h3>Insurance Services</h3>
+                    <p>Protect your savings and family with our comprehensive insurance products designed for sacco members.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Life insurance</li>
+                        <li><i class="fas fa-check"></i> Asset protection</li>
+                        <li><i class="fas fa-check"></i> Affordable premiums</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h3>Mobile Banking</h3>
+                    <p>Manage your account anytime, anywhere with our secure mobile banking platform. Check balance, transfer, and pay bills.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 24/7 access</li>
+                        <li><i class="fas fa-check"></i> Secure transactions</li>
+                        <li><i class="fas fa-check"></i> Instant notifications</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Financial Education</h3>
+                    <p>Attend our free workshops and seminars to improve your financial literacy and make smarter money decisions.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Free workshops</li>
+                        <li><i class="fas fa-check"></i> Business training</li>
+                        <li><i class="fas fa-check"></i> Investment tips</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="why-choose-content">
+                <div class="why-choose-text">
+                    <span class="subtitle">Why Choose Us</span>
+                    <h2>Your Money is Safe With Us</h2>
+                    <p>At Bali Baseeka Sacco, we prioritize the security and growth of your hard-earned money. Our track record speaks for itself.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-shield-halved"></i>
+                            <div>
+                                <h4>Fully Regulated</h4>
+                                <p>Operate under strict regulatory guidelines ensuring your funds are protected.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-lock"></i>
+                            <div>
+                                <h4>Secure Transactions</h4>
+                                <p>State-of-the-art encryption and security measures for all transactions.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h4>Proven Track Record</h4>
+                                <p>Over 15 years of dedicated service to our community and members.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <h4>Excellent Support</h4>
+                                <p>Friendly customer service team ready to assist you always.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-choose-image">
+                    <div class="image-frame">
+                        <i class="fas fa-building-columns"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="membership">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Join Us Today</span>
+                <h2>Become a Member</h2>
+                <p>Unlock a world of financial benefits by joining the Bali Baseeka family.</p>
+            </div>
+            <div class="membership-grid">
+                <div class="membership-card">
+                    <div class="card-header">
+                        <i class="fas fa-user-plus"></i>
+                        <h3>How to Join</h3>
+                    </div>
+                    <ol>
+                        <li>Fill out the membership form</li>
+                        <li>Submit required documents</li>
+                        <li>Pay initial deposit (₦5,000 minimum)</li>
+                        <li>Receive your membership card</li>
+                        <li>Start enjoying benefits!</li>
+                    </ol>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="membership-card">
+                    <div class="card-header">
+                        <i class="fas fa-gift"></i>
+                        <h3>Member Benefits</h3>
+                    </div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Access to low-interest loans</li>
+                        <li><i class="fas fa-check"></i> Annual dividends on savings</li>
+                        <li><i class="fas fa-check"></i> Financial planning assistance</li>
+                        <li><i class="fas fa-check"></i> Training and development</li>
+                        <li><i class="fas fa-check"></i> Voting rights in general meetings</li>
+                    </ul>
+                </div>
+                <div class="membership-card">
+                    <div class="card-header">
+                        <i class="fas fa-file-contract"></i>
+                        <h3>Requirements</h3>
+                    </div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Valid ID (National ID, Passport, etc.)</li>
+                        <li><i class="fas fa-check"></i> Proof of residence</li>
+                        <li><i class="fas fa-check"></i> Passport photograph</li>
+                        <li><i class="fas fa-check"></i> 2 references from members</li>
+                        <li><i class="fas fa-check"></i> Minimum age: 18 years</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Testimonials</span>
+                <h2>What Our Members Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"Bali Baseeka Sacco helped me start my business. The loan process was smooth and the interest rates are fair. I'm now employing 5 people!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Ndahiro Charles</h4>
+                            <span>Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"I've been a member for 10 years. The savings dividends have helped me pay for my children's education. Truly a reliable partner."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Nalubega Farida</h4>
+                            <span>Treasurer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Get In Touch</span>
+                <h2>Contact Us</h2>
+                <p>Have questions? We're here to help. Reach out to us anytime.</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Bali Baseeka Sacco HQ<br>Plot 45, Kampala Road<br>Kampala, Uganda</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+256 762052069<br>+256 752485961</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@balibaseeka.co.ug<br>support@balibaseeka.co.ug</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/256752485961" target="_blank" style="color: #25D366; text-decoration: none;">Chat on WhatsApp</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Mon - Fri: 8:00 AM - 5:00 PM<br>Sat: 9:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" name="subject" required>
+                                <option value="">Select Subject</option>
+                                <option value="membership">Membership Inquiry</option>
+                                <option value="loan">Loan Application</option>
+                                <option value="savings">Savings Information</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                        </div>
+                        <div class="logo-text">
+                            <h3>Bali Baseeka</h3>
+                            <span>Sacco Services</span>
+                        </div>
+                    </div>
+                    <p>Your trusted partner in financial growth. We are committed to helping our members achieve their financial goals through quality services and community support.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">Savings Account</a></li>
+                        <li><a href="#services">Loans & Credit</a></li>
+                        <li><a href="#services">Group Lending</a></li>
+                        <li><a href="#services">Insurance</a></li>
+                        <li><a href="#services">Mobile Banking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates and financial tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <div style="margin-top: 15px;">
+                        <a href="https://wa.me/256752485961" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #25D366; text-decoration: none; font-weight: 500; background: rgba(37,211,102,0.1); padding: 10px 15px; border-radius: 8px;">
+                            <i class="fab fa-whatsapp" style="font-size: 20px;"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bali Baseeka Sacco. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

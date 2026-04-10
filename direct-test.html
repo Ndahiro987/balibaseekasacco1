@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct Login Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        #result { margin-top: 20px; padding: 10px; background: #f0f0f0; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Direct Login Test</h1>
+    <p>Try these credentials:</p>
+    <ul>
+        <li>Username: <strong>superadmin</strong> - Password: <strong>ndahiro123</strong></li>
+        <li>Username: <strong>ndahiro</strong> - Password: <strong>ndahiro123</strong></li>
+        <li>Username: <strong>fatuma</strong> - Password: <strong>fatuma123</strong></li>
+    </ul>
+    
+    <form id="testForm">
+        <input type="text" id="username" placeholder="Username" style="padding: 10px; width: 200px;"><br><br>
+        <input type="password" id="password" placeholder="Password" style="padding: 10px; width: 200px;"><br><br>
+        <button type="submit" style="padding: 10px 20px; background: #28a745; color: white; border: none; cursor: pointer;">Login</button>
+    </form>
+    <div id="result"></div>
+    
+    <script>
+    document.getElementById('testForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const resultDiv = document.getElementById('result');
+        
+        resultDiv.innerHTML = 'Testing...';
+        
+        try {
+            // Use the direct API path
+            const response = await fetch('api/admin-login.php', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+            
+            const result = await response.json();
+            resultDiv.className = result.success ? 'success' : 'error';
+            resultDiv.innerHTML = '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
+        } catch (error) {
+            resultDiv.className = 'error';
+            resultDiv.innerHTML = 'Error: ' + error.message + '<br>Make sure you are running this on a PHP server (XAMPP/WAMP)';
+        }
+    });
+    </script>
+</body>
+</html>

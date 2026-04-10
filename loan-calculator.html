@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator - Bali Baseeka Sacco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="page-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Bali Baseeka</h1>
+                    <span>Sacco Services</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="membership.html">Join Us</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="login-btn">Member Login</a>
+                <a href="admin-login.html" class="admin-btn">Admin Login</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+                <div class="logo-icon">
+                    <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Bali Baseeka</h1>
+                    <span>Sacco Services</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn-login">Member Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Loan Calculator</h1>
+            <p>Calculate your potential loan payments and find the best option for you</p>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <h3><i class="fas fa-calculator" style="margin-right: 10px;"></i>Loan Calculator</h3>
+                    
+                    <!-- Loan Amount -->
+                    <div class="range-container">
+                        <div class="range-label">
+                            <span>Loan Amount</span>
+                            <span class="range-value" id="amountValue">₦0</span>
+                        </div>
+                        <input type="range" id="loanAmount" min="50000" max="5000000" step="50000" value="50000">
+                    </div>
+                    
+                    <!-- Loan Term -->
+                    <div class="range-container">
+                        <div class="range-label">
+                            <span>Loan Term</span>
+                            <span class="range-value" id="termValue">12 Months</span>
+                        </div>
+                        <input type="range" id="loanTerm" min="3" max="36" step="1" value="12">
+                    </div>
+                    
+                    <!-- Interest Rate -->
+                    <div class="range-container">
+                        <div class="range-label">
+                            <span>Interest Rate (per month)</span>
+                            <span class="range-value" id="rateValue">1.5%</span>
+                        </div>
+                        <input type="range" id="interestRate" min="1" max="3" step="0.1" value="1.5">
+                    </div>
+                    
+                    <!-- Loan Type -->
+                    <div class="form-group">
+                        <label>Loan Type</label>
+                        <select class="form-control" id="loanType">
+                            <option value="personal">Personal Loan</option>
+                            <option value="business">Business Loan</option>
+                            <option value="education">Education Loan</option>
+                            <option value="housing">Housing Loan</option>
+                            <option value="emergency">Emergency Loan</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="calculateBtn" style="width: 100%; margin-top: 20px;">
+                        <i class="fas fa-calculator" style="margin-right: 10px;"></i>Calculate
+                    </button>
+                </div>
+                
+                <!-- Calculator Result -->
+                <div class="calculator-result">
+                    <h3><i class="fas fa-chart-pie" style="margin-right: 10px;"></i>Loan Summary</h3>
+                    
+                    <div class="result-item">
+                        <span>Loan Amount</span>
+                        <span id="summaryAmount">UGX 0</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Interest Rate</span>
+                        <span id="summaryRate">1.5% per month</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Loan Term</span>
+                        <span id="summaryTerm">12 months</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Total Interest</span>
+                        <span id="summaryInterest">UGX 0</span>
+                    </div>
+                    
+                    <div class="result-item highlight">
+                        <span>Monthly Payment</span>
+                        <span id="summaryMonthly">UGX 0</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span>Total Repayment</span>
+                        <span id="summaryTotal">UGX 0</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 10px;">
+                            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                            Note: This is an estimate. Actual loan approval depends on your creditworthiness and eligibility.
+                        </p>
+                    </div>
+                    
+                    <a href="membership.html" class="btn btn-secondary" style="width: 100%; margin-top: 20px; display: block; text-align: center;">
+                        <i class="fas fa-file-signature" style="margin-right: 10px;"></i>Apply Now
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Loan Comparison Table -->
+            <div style="margin-top: 60px;">
+                <div class="section-header">
+                    <span class="subtitle">Quick Reference</span>
+                    <h2>Sample Loan Repayments</h2>
+                </div>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; background: var(--bg-white); border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow);">
+                        <thead>
+                            <tr style="background: var(--primary-color); color: var(--text-white);">
+                                <th style="padding: 20px; text-align: left;">Loan Amount</th>
+                                <th style="padding: 20px; text-align: left;">6 Months</th>
+                                <th style="padding: 20px; text-align: left;">12 Months</th>
+                                <th style="padding: 20px; text-align: left;">18 Months</th>
+                                <th style="padding: 20px; text-align: left;">24 Months</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 15px 20px;">₦100,000</td>
+                                <td style="padding: 15px 20px;">-</td>
+                                <td style="padding: 15px 20px;">-</td>
+                                <td style="padding: 15px 20px;">-</td>
+                                <td style="padding: 15px 20px;">₦5,083/mo</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee; background: var(--bg-light);">
+                                <td style="padding: 15px 20px;">₦250,000</td>
+                                <td style="padding: 15px 20px;">-</td>
+                                <td style="padding: 15px 20px;">₦23,750/mo</td>
+                                <td style="padding: 15px 20px;">₦16,389/mo</td>
+                                <td style="padding: 15px 20px;">₦12,708/mo</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 15px 20px;">₦500,000</td>
+                                <td style="padding: 15px 20px;">₦91,667/mo</td>
+                                <td style="padding: 15px 20px;">₦47,500/mo</td>
+                                <td style="padding: 15px 20px;">₦32,778/mo</td>
+                                <td style="padding: 15px 20px;">₦25,417/mo</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee; background: var(--bg-light);">
+                                <td style="padding: 15px 20px;">₦1,000,000</td>
+                                <td style="padding: 15px 20px;">₦183,333/mo</td>
+                                <td style="padding: 15px 20px;">₦95,000/mo</td>
+                                <td style="padding: 15px 20px;">₦65,556/mo</td>
+                                <td style="padding: 15px 20px;">₦50,833/mo</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 15px 20px;">₦2,000,000</td>
+                                <td style="padding: 15px 20px;">₦366,667/mo</td>
+                                <td style="padding: 15px 20px;">₦190,000/mo</td>
+                                <td style="padding: 15px 20px;">₦131,111/mo</td>
+                                <td style="padding: 15px 20px;">₦101,667/mo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div style="margin-top: 60px;">
+                <div class="section-header">
+                    <span class="subtitle">Help</span>
+                    <h2>Loan Calculator FAQ</h2>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;">
+                    <div style="background: var(--bg-white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-question-circle" style="color: var(--secondary-color); margin-right: 10px;"></i>How is interest calculated?</h4>
+                        <p style="color: var(--text-light); font-size: 14px;">Interest is calculated on a reducing balance basis (diminishing balance). This means interest is charged only on the remaining principal balance each month.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-question-circle" style="color: var(--secondary-color); margin-right: 10px;"></i>Can I pay off my loan early?</h4>
+                        <p style="color: var(--text-light); font-size: 14px;">Yes! You can make early repayments without penalties. This will reduce the total interest paid over the loan term.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-question-circle" style="color: var(--secondary-color); margin-right: 10px;"></i>What affects my interest rate?</h4>
+                        <p style="color: var(--text-light); font-size: 14px;">Your interest rate depends on your membership duration, savings record, loan type, and the security/collateral provided.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-question-circle" style="color: var(--secondary-color); margin-right: 10px;"></i>How much can I borrow?</h4>
+                        <p style="color: var(--text-light); font-size: 14px;">Members can borrow up to 3 times their savings balance. With collateral, higher amounts may be available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                        </div>
+                        <div class="logo-text">
+                            <h3>Bali Baseeka</h3>
+                            <span>Sacco Services</span>
+                        </div>
+                    </div>
+                    <p>Your trusted partner in financial growth. We are committed to helping our members achieve their financial goals through quality services and community support.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="services.html">Savings Account</a></li>
+                        <li><a href="services.html">Loans & Credit</a></li>
+                        <li><a href="services.html">Group Lending</a></li>
+                        <li><a href="services.html">Insurance</a></li>
+                        <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates and financial tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bali Baseeka Sacco. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Calculator Elements
+        const loanAmount = document.getElementById('loanAmount');
+        const loanTerm = document.getElementById('loanTerm');
+        const interestRate = document.getElementById('interestRate');
+        const calculateBtn = document.getElementById('calculateBtn');
+        
+        // Value Displays
+        const amountValue = document.getElementById('amountValue');
+        const termValue = document.getElementById('termValue');
+        const rateValue = document.getElementById('rateValue');
+        
+        // Summary Elements
+        const summaryAmount = document.getElementById('summaryAmount');
+        const summaryRate = document.getElementById('summaryRate');
+        const summaryTerm = document.getElementById('summaryTerm');
+        const summaryInterest = document.getElementById('summaryInterest');
+        const summaryMonthly = document.getElementById('summaryMonthly');
+        const summaryTotal = document.getElementById('summaryTotal');
+        
+        // Format number as currency
+        function formatCurrency(num) {
+            return 'UGX ' + num.toLocaleString();
+        }
+        
+        // Calculate loan
+        function calculateLoan() {
+            const principal = parseFloat(loanAmount.value);
+            const months = parseInt(loanTerm.value);
+            const monthlyRate = parseFloat(interestRate.value) / 100;
+            
+            // Calculate monthly payment using formula: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+            const monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+            
+            const totalPayment = monthlyPayment * months;
+            const totalInterest = totalPayment - principal;
+            
+            // Update display values
+            amountValue.textContent = formatCurrency(principal);
+            termValue.textContent = months + ' Months';
+            rateValue.textContent = interestRate.value + '%';
+            
+            // Update summary
+            summaryAmount.textContent = formatCurrency(principal);
+            summaryRate.textContent = interestRate.value + '% per month';
+            summaryTerm.textContent = months + ' months';
+            summaryInterest.textContent = formatCurrency(Math.round(totalInterest));
+            summaryMonthly.textContent = formatCurrency(Math.round(monthlyPayment));
+            summaryTotal.textContent = formatCurrency(Math.round(totalPayment));
+        }
+        
+        // Event listeners
+        loanAmount.addEventListener('input', calculateLoan);
+        loanTerm.addEventListener('input', calculateLoan);
+        interestRate.addEventListener('input', calculateBtn);
+        calculateBtn.addEventListener('click', calculateLoan);
+        
+        // Initial calculation
+        calculateLoan();
+    </script>
+</body>
+</html>

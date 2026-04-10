@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Bali Baseeka Sacco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="page-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .login-section {
+            padding: 130px 0 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f9f6 0%, #e8f5e9 100%);
+        }
+        
+        .login-form-container {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
+        
+        .login-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .login-form-container {
+            background: var(--bg-white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login-form-container h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .login-form-container > p {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .admin-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: white;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .form-group i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 86, 62, 0.1);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        
+        .remember-forgot a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+        
+        .remember-forgot label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+        
+        .btn-login-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-login-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 86, 62, 0.3);
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-link a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-link a:hover {
+            color: var(--primary-color);
+        }
+        
+        .login-info {
+            color: white;
+        }
+        
+        .login-info h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .login-info > p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .login-info ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        
+        .login-info ul li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .login-info ul li i {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .admin-notice {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .admin-notice h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .admin-notice p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c00;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        @media (max-width: 992px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-info {
+                text-align: center;
+            }
+            
+            .login-info ul li {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .login-form-container {
+                padding: 30px 20px;
+            }
+            
+            .login-info h2 {
+                font-size: 28px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Bali Baseeka</h1>
+                    <span>Sacco Services</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="membership.html">Join Us</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="login-btn">Member Login</a>
+                <a href="admin-login.html" class="admin-btn">Admin Login</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-form-container">
+                    <div class="admin-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h2>Admin Panel</h2>
+                    <p>Secure access for authorized administrators</p>
+                    
+                    <div class="error-message" id="errorMessage">Invalid username or password. Please try again.</div>
+                    
+                    <form id="adminLoginForm">
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="remember-forgot">
+                            <label>
+                                <input type="checkbox" id="remember"> Remember me
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-login-submit">
+                            <i class="fas fa-sign-in-alt"></i> Login to Admin Panel
+                        </button>
+                    </form>
+                    
+                    <div class="back-link">
+                        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+                    </div>
+                </div>
+                
+                <div class="login-info">
+                    <h2>Administrator Access</h2>
+                    <p>Welcome to the Bali Baseeka Sacco administration portal. Please enter your credentials to manage members, loans, savings, and system settings.</p>
+                    <ul>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Manage member accounts</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Process loan applications</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>View financial reports</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Configure system settings</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Monitor transactions</span>
+                        </li>
+                    </ul>
+                    <div class="admin-notice">
+                        <h4><i class="fas fa-info-circle"></i> Notice</h4>
+                        <p>This area is restricted to authorized personnel only. Unauthorized access is prohibited and may result in legal action.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                        </div>
+                        <div>
+                            <h3>Bali Baseeka</h3>
+                            <span>Sacco Services</span>
+                        </div>
+                    </div>
+                    <p>Empowering communities through financial inclusion and sustainable sacco services since 2014.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="membership.html">Join Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Savings Account</a></li>
+                        <li><a href="services.html">Loans</a></li>
+                        <li><a href="services.html">Mobile Banking</a></li>
+                        <li><a href="services.html">Business Services</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Bali Baseeka, Uganda</p>
+                    <p><i class="fas fa-phone"></i> +256 762052069</p>
+                    <p><i class="fas fa-envelope"></i> info@balibaseeka.co.ug</p>
+                    <p><i class="fas fa-clock"></i> Mon - Fri: 8:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bali Baseeka Sacco. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            
+            if (!username || !password) {
+                errorDiv.textContent = 'Please enter username and password';
+                errorDiv.classList.add('show');
+                return;
+            }
+            
+            try {
+                const response = await fetch('api/admin-login.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('adminUsername', result.data.username);
+                    sessionStorage.setItem('adminName', result.data.name);
+                    sessionStorage.setItem('adminRole', result.data.role);
+                    sessionStorage.setItem('adminId', result.data.admin_id);
+                    window.location.href = 'admin/index.html';
+                } else {
+                    errorDiv.textContent = result.message || 'Invalid credentials';
+                    errorDiv.classList.add('show');
+                    setTimeout(() => errorDiv.classList.remove('show'), 5000);
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Connection error. Please try again.';
+                errorDiv.classList.add('show');
+                setTimeout(() => errorDiv.classList.remove('show'), 5000);
+            }
+        });
+    </script>
+</body>
+</html>

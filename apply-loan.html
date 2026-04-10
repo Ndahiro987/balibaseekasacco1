@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application - Bali Baseeka Sacco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="page-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Bali Baseeka</h1>
+                    <span>Sacco Services</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="membership.html">Join Us</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="login-btn">Member Login</a>
+                <a href="admin-login.html" class="admin-btn">Admin Login</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+                <div class="logo-icon">
+                    <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Bali Baseeka</h1>
+                    <span>Sacco Services</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn-login">Member Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Apply for a Loan</h1>
+            <p>Follow these steps to apply for a loan with Bali Baseeka Sacco</p>
+        </div>
+    </section>
+
+    <!-- Loan Application Process -->
+    <section class="process-section" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">How It Works</span>
+                <h2>Loan Application Process</h2>
+                <p>Please follow these steps to successfully apply for a loan</p>
+            </div>
+            
+            <div class="process-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="process-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow); text-align: center;">
+                    <div class="process-icon" style="width: 80px; height: 80px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-user-plus" style="font-size: 32px; color: white;"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Step 1: Register</h3>
+                    <p style="color: var(--text-light);">Become a member by completing the membership registration form and paying the initial deposit.</p>
+                </div>
+                
+                <div class="process-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow); text-align: center;">
+                    <div class="process-icon" style="width: 80px; height: 80px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-download" style="font-size: 32px; color: white;"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Step 2: Download Form</h3>
+                    <p style="color: var(--text-light);">Download the loan application form from our downloads page after registering as a member.</p>
+                </div>
+                
+                <div class="process-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow); text-align: center;">
+                    <div class="process-icon" style="width: 80px; height: 80px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-file-signature" style="font-size: 32px; color: white;"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Step 3: Fill & Submit</h3>
+                    <p style="color: var(--text-light);">Fill out the form and attach your security documents (see below). Bring all documents to our office.</p>
+                </div>
+                
+                <div class="process-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow); text-align: center;">
+                    <div class="process-icon" style="width: 80px; height: 80px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <i class="fas fa-building" style="font-size: 32px; color: white;"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Step 4: Visit Office</h3>
+                    <p style="color: var(--text-light);">Bring the completed form and original security documents to our office for review and processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Documents Required -->
+    <section class="services-section" style="background: var(--bg-light); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Required Documents</span>
+                <h2>Security/Collateral Documents</h2>
+                <p>You must provide the following documents when applying for a loan</p>
+            </div>
+            
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="service-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div class="service-icon" style="width: 70px; height: 70px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-id-card" style="font-size: 28px; color: var(--primary-dark);"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Proof of Identity</h3>
+                    <p style="color: var(--text-light);">Valid National ID, Passport, or Driver's License (original and copy)</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div class="service-icon" style="width: 70px; height: 70px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-home" style="font-size: 28px; color: var(--primary-dark);"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Proof of Residence</h3>
+                    <p style="color: var(--text-light);">Utility bill, letter from local council, or rental agreement</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div class="service-icon" style="width: 70px; height: 70px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-landscape" style="font-size: 28px; color: var(--primary-dark);"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Land Title (if applicable)</h3>
+                    <p style="color: var(--text-light);">Title deed, lease agreement, or land registration documents for collateral</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div class="service-icon" style="width: 70px; height: 70px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-car" style="font-size: 28px; color: var(--primary-dark);"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Vehicle Title (if applicable)</h3>
+                    <p style="color: var(--text-light);">Logbook, registration documents, or insurance certificate for vehicle collateral</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div class="service-icon" style="width: 70px; height: 70px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-briefcase" style="font-size: 28px; color: var(--primary-dark);"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Proof of Income</h3>
+                    <p style="color: var(--text-light);">Pay slips, bank statements, or business registration documents</p>
+                </div>
+                
+                <div class="service-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                    <div class="service-icon" style="width: 70px; height: 70px; background: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-users" style="font-size: 28px; color: var(--primary-dark);"></i>
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Guarantor</h3>
+                    <p style="color: var(--text-light);">Details of a member willing to act as guarantor with their ID and savings details</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="cta-section" style="padding: 80px 0; text-align: center;">
+        <div class="container">
+            <h2 style="color: var(--primary-color); margin-bottom: 20px;">Ready to Apply?</h2>
+            <p style="color: var(--text-light); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                After registering as a member, download the loan application form, fill it out, and bring it to our office along with your security documents.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="downloads.html" class="btn btn-primary" style="display: inline-block; padding: 15px 40px;">
+                    <i class="fas fa-download" style="margin-right: 10px;"></i>Download Loan Application Form
+                </a>
+                <a href="membership.html" class="btn btn-secondary" style="display: inline-block; padding: 15px 40px;">
+                    <i class="fas fa-user-plus" style="margin-right: 10px;"></i>Register as Member First
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                        </div>
+                        <div>
+                            <h3>Bali Baseeka</h3>
+                            <span>Sacco Services</span>
+                        </div>
+                    </div>
+                    <p>Empowering communities through financial inclusion and sustainable sacco services.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="membership.html">Join Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Savings Account</a></li>
+                        <li><a href="services.html">Loans</a></li>
+                        <li><a href="downloads.html">Downloads</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Plot 45, Kampala Road, Kampala, Uganda</p>
+                    <p><i class="fas fa-phone"></i> +256 762052069</p>
+                    <p><i class="fas fa-envelope"></i> info@balibaseeka.co.ug</p>
+                    <p><a href="https://wa.me/256752485961" target="_blank" style="color: #25D366; text-decoration: none; font-weight: 500;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bali Baseeka Sacco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

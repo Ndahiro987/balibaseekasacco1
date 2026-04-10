@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Bali Baseeka Sacco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="page-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="mainHeader"> <div class="header-top"> <div class="container"> <div class="logo"> <div class="logo-icon"> <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo"> </div> <div class="logo-text"> <h1>Bali Baseeka</h1> <span>Sacco Services</span> </div> </div> <div class="header-actions"> <a href="login.html" class="login-btn">Member Login</a> <a href="admin-login.html" class="admin-btn">Admin Login</a> </div> </div> </div> <div class="header-bottom"> <div class="container"> <nav class="nav desktop-nav"> <ul> <li><a href="index.html">Home</a></li> <li><a href="about.html">About</a></li> <li><a href="services.html">Services</a></li> <li><a href="membership.html">Join Us</a></li> <li><a href="faq.html">FAQs</a></li> <li><a href="contact.html">Contact</a></li> </ul> </nav> <div class="hamburger" id="hamburger" onclick="toggleMenu()"> <span></span> <span></span> <span></span> </div> </div> </div> </header>
+    
+    <!-- Mobile Menu Styles -->
+    <style>
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-white);
+            z-index: 9999;
+            transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .mobile-menu-header .logo-text h1 {
+            color: white;
+            font-size: 18px;
+        }
+        
+        .close-menu {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+        
+        .mobile-menu-content {
+            padding: 20px;
+        }
+        
+        .mobile-section {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-section h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            margin-bottom: 5px;
+        }
+        
+        .mobile-link:hover {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            transform: translateX(10px);
+        }
+        
+        .mobile-link i {
+            width: 25px;
+            color: var(--secondary-color);
+        }
+        
+        .mobile-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+        
+        .mobile-menu-footer {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+        
+        .mobile-menu-footer p {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .mobile-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .mobile-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .mobile-social a:hover {
+            background: var(--secondary-color);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hamburger Animation */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10000;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        @media (max-width: 992px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+    
+    <script>
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Create overlay if not exists
+            let overlay = document.querySelector('.menu-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'menu-overlay';
+                overlay.onclick = toggleMenu;
+                document.body.appendChild(overlay);
+            }
+            
+            overlay.classList.toggle('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        // Close menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+        
+        // Scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive financial solutions designed to meet your unique needs</p>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">What We Offer</span>
+                <h2>Explore Our Services</h2>
+                <p>At Bali Baseeka Sacco, we provide a wide range of financial products and services tailored to help our members achieve their financial goals.</p>
+            </div>
+            
+            <div class="services-grid-full">
+                <!-- Savings Account -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Savings Account</h3>
+                        <p>Secure your future with our high-yield savings accounts. Start saving with as little as UGX 1,000 and watch your money grow with competitive interest rates.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Competitive interest rates</li>
+                            <li><i class="fas fa-check"></i> No minimum balance after initial deposit</li>
+                            <li><i class="fas fa-check"></i> Easy withdrawal access</li>
+                            <li><i class="fas fa-check"></i> Free monthly statements</li>
+                            <li><i class="fas fa-check"></i> ATM card available</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('savings')">Open Account</button>
+                    </div>
+                </div>
+
+                <!-- Loans & Credit -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-sack-dollar"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Loans & Credit</h3>
+                        <p>Access quick, affordable loans for business, education, housing, or personal needs with flexible repayment plans.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Interest rates as low as 1.5% per month</li>
+                            <li><i class="fas fa-check"></i> Quick approval (24-72 hours)</li>
+                            <li><i class="fas fa-check"></i> Flexible repayment up to 36 months</li>
+                            <li><i class="fas fa-check"></i> Loan amounts from UGX 50,000 to UGX 50,000,000</li>
+                            <li><i class="fas fa-check"></i> Security/collateral required for loans</li>
+                            <li><a href="apply-loan.html" style="color: var(--secondary-color); font-weight: 600; margin-top: 10px; display: inline-block;"><i class="fas fa-file-signature"></i> Apply for Loan</a></li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('loans')">Apply for Loan</button>
+                    </div>
+                </div>
+
+                <!-- Group Lending -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Group Lending (Chama)</h3>
+                        <p>Join with friends, family, or colleagues to access larger loans through our trusted group lending program.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Shared responsibility among members</li>
+                            <li><i class="fas fa-check"></i> Higher loan limits for groups</li>
+                            <li><i class="fas fa-check"></i> Lower interest rates</li>
+                            <li><i class="fas fa-check"></i> Group training and financial education</li>
+                            <li><i class="fas fa-check"></i> Regular group meetings support</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('group')">Join Group</button>
+                    </div>
+                </div>
+
+                <!-- Fixed Deposit -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-vault"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Fixed Deposit</h3>
+                        <p>Earn higher returns on your savings with our fixed deposit accounts. Lock in your funds for higher interest rates.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Higher interest rates (up to 15%)</li>
+                            <li><i class="fas fa-check"></i> Flexible tenure options (3-24 months)</li>
+                            <li><i class="fas fa-check"></i> Automatic renewal options</li>
+                            <li><i class="fas fa-check"></i> Loan against deposit available</li>
+                            <li><i class="fas fa-check"></i> Interest paid monthly or quarterly</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('fixed')">Invest Now</button>
+                    </div>
+                </div>
+
+                <!-- Insurance Services -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-umbrella"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Insurance Services</h3>
+                        <p>Protect your savings and family with our comprehensive insurance products designed specifically for sacco members.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Life insurance cover</li>
+                            <li><i class="fas fa-check"></i> Asset protection</li>
+                            <li><i class="fas fa-check"></i> Funeral cover</li>
+                            <li><i class="fas fa-check"></i> Medical insurance</li>
+                            <li><i class="fas fa-check"></i> Affordable premiums</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('insurance')">Get Covered</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Banking -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Mobile Banking</h3>
+                        <p>Manage your account anytime, anywhere with our secure mobile banking platform. Check balance, transfer, and pay bills.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 24/7 account access</li>
+                            <li><i class="fas fa-check"></i> Instant fund transfers</li>
+                            <li><i class="fas fa-check"></i> Bill payments</li>
+                            <li><i class="fas fa-check"></i> Transaction alerts</li>
+                            <li><i class="fas fa-check"></i> USSD code available</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('mobile')">Register</button>
+                    </div>
+                </div>
+
+                <!-- Financial Education -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Financial Education</h3>
+                        <p>Attend our free workshops and seminars to improve your financial literacy and make smarter money decisions.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Free financial workshops</li>
+                            <li><i class="fas fa-check"></i> Business management training</li>
+                            <li><i class="fas fa-check"></i> Investment guidance</li>
+                            <li><i class="fas fa-check"></i> Budgeting tips</li>
+                            <li><i class="fas fa-check"></i> Entrepreneurship support</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('education')">Join Workshop</button>
+                    </div>
+                </div>
+
+                <!-- Youth Program -->
+                <div class="service-detail-card">
+                    <div class="service-detail-icon">
+                        <i class="fas fa-users-rays"></i>
+                    </div>
+                    <div class="service-detail-info">
+                        <h3>Youth & Women Programs</h3>
+                        <p>Special financial products and training programs designed to empower youth and women entrepreneurs.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Youth savings accounts</li>
+                            <li><i class="fas fa-check"></i> Women entrepreneurship loans</li>
+                            <li><i class="fas fa-check"></i> Mentorship programs</li>
+                            <li><i class="fas fa-check"></i> Business development training</li>
+                            <li><i class="fas fa-check"></i> Networking opportunities</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openServiceModal('youth')">Join Program</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Our Services -->
+    <section class="why-choose-services">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Why Bali Baseeka</span>
+                <h2>Benefits of Our Services</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h4>Secure & Regulated</h4>
+                    <p>Your money is safe with us. We operate under strict regulatory guidelines.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-percent"></i>
+                    <h4>Competitive Rates</h4>
+                    <p>Enjoy some of the best interest rates in the market.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Quick Processing</h4>
+                    <p>Get approvals faster with our streamlined processes.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>Excellent Support</h4>
+                    <p>Our friendly team is always ready to assist you.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-globe"></i>
+                    <h4>Wide Network</h4>
+                    <p>Access services across multiple locations.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Member-Focused</h4>
+                    <p>We put our members' needs at the center of everything.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Contact us today to learn more about our services or visit our office.</p>
+                <div class="cta-buttons">
+                    <a href="membership.html" class="btn btn-primary">Become a Member</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <img src="assets/logo.svg" alt="Bali Baseeka Sacco Logo">
+                        </div>
+                        <div class="logo-text">
+                            <h3>Bali Baseeka</h3>
+                            <span>Sacco Services</span>
+                        </div>
+                    </div>
+                    <p>Your trusted partner in financial growth. We are committed to helping our members achieve their financial goals through quality services and community support.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="services.html">Savings Account</a></li>
+                        <li><a href="services.html">Loans & Credit</a></li>
+                        <li><a href="services.html">Group Lending</a></li>
+                        <li><a href="services.html">Insurance</a></li>
+                        <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates and financial tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bali Baseeka Sacco. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Service Registration Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeServiceModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle">Register for Service</h2>
+                <p id="modalDescription">Please enter your member credentials to register for this service.</p>
+            </div>
+            <form id="serviceRegistrationForm" onsubmit="handleServiceRegistration(event)">
+                <div class="form-group">
+                    <label for="memberId">Member ID <span>*</span></label>
+                    <input type="text" id="memberId" name="memberId" placeholder="Enter your member ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberPassword">Password <span>*</span></label>
+                    <input type="password" id="memberPassword" name="memberPassword" placeholder="Enter your password" required>
+                </div>
+                <div id="serviceFields"></div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeServiceModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #e74c3c;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .modal-header p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        #serviceRegistrationForm .form-group {
+            margin-bottom: 20px;
+        }
+
+        #serviceRegistrationForm label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        #serviceRegistrationForm label span {
+            color: #e74c3c;
+        }
+
+        #serviceRegistrationForm input,
+        #serviceRegistrationForm select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        #serviceRegistrationForm input:focus,
+        #serviceRegistrationForm select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .form-actions button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-actions .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .form-actions .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .form-actions .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .form-actions .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message {
+            color: #2ecc71;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+
+    <script>
+        // Service registration data
+        const serviceData = {
+            savings: {
+                title: 'Open Savings Account',
+                description: 'Register for a new savings account with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="initialDeposit">Initial Deposit Amount <span>*</span></label>
+                        <select id="initialDeposit" name="initialDeposit" required>
+                            <option value="">Select Amount</option>
+                            <option value="1000">UGX 1,000</option>
+                            <option value="5000">UGX 5,000</option>
+                            <option value="10000">UGX 10,000</option>
+                            <option value="50000">UGX 50,000</option>
+                            <option value="100000">UGX 100,000</option>
+                        </select>
+                    </div>
+                `
+            },
+            loans: {
+                title: 'Apply for Loan',
+                description: 'Submit a loan application using your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="loanProduct">Loan Product <span>*</span></label>
+                        <select id="loanProduct" name="loanProduct" required>
+                            <option value="">Select Product</option>
+                            <option value="personal">Personal Loan</option>
+                            <option value="business">Business Loan</option>
+                            <option value="emergency">Emergency Loan</option>
+                            <option value="education">Education Loan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="loanAmount">Loan Amount (UGX) <span>*</span></label>
+                        <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter amount" min="50000" max="50000000" required>
+                    </div>
+                `
+            },
+            group: {
+                title: 'Join Group Lending',
+                description: 'Register for group lending program with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="groupName">Group Name <span>*</span></label>
+                        <input type="text" id="groupName" name="groupName" placeholder="Enter group name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupMembers">Number of Members <span>*</span></label>
+                        <input type="number" id="groupMembers" name="groupMembers" placeholder="Enter number of members" min="3" max="20" required>
+                    </div>
+                `
+            },
+            fixed: {
+                title: 'Fixed Deposit Investment',
+                description: 'Open a fixed deposit account with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="depositAmount">Deposit Amount (UGX) <span>*</span></label>
+                        <input type="number" id="depositAmount" name="depositAmount" placeholder="Enter amount" min="50000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenure">Tenure (Months) <span>*</span></label>
+                        <select id="tenure" name="tenure" required>
+                            <option value="">Select Tenure</option>
+                            <option value="3">3 Months</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">12 Months</option>
+                            <option value="24">24 Months</option>
+                        </select>
+                    </div>
+                `
+            },
+            insurance: {
+                title: 'Insurance Services',
+                description: 'Register for insurance coverage with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="insuranceType">Insurance Type <span>*</span></label>
+                        <select id="insuranceType" name="insuranceType" required>
+                            <option value="">Select Type</option>
+                            <option value="life">Life Insurance</option>
+                            <option value="medical">Medical Insurance</option>
+                            <option value="funeral">Funeral Cover</option>
+                            <option value="asset">Asset Protection</option>
+                        </select>
+                    </div>
+                `
+            },
+            mobile: {
+                title: 'Mobile Banking Registration',
+                description: 'Register for mobile banking services with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number <span>*</span></label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number" required>
+                    </div>
+                `
+            },
+            education: {
+                title: 'Financial Education Workshop',
+                description: 'Register for financial education workshops with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="workshopType">Workshop Type <span>*</span></label>
+                        <select id="workshopType" name="workshopType" required>
+                            <option value="">Select Workshop</option>
+                            <option value="financial-literacy">Financial Literacy</option>
+                            <option value="business-management">Business Management</option>
+                            <option value="investment">Investment Guidance</option>
+                            <option value="budgeting">Budgeting Tips</option>
+                        </select>
+                    </div>
+                `
+            },
+            youth: {
+                title: 'Youth & Women Programs',
+                description: 'Join youth and women empowerment programs with your member credentials.',
+                fields: `
+                    <div class="form-group">
+                        <label for="programType">Program Type <span>*</span></label>
+                        <select id="programType" name="programType" required>
+                            <option value="">Select Program</option>
+                            <option value="youth-savings">Youth Savings Account</option>
+                            <option value="women-loan">Women Entrepreneurship Loan</option>
+                            <option value="mentorship">Mentorship Program</option>
+                            <option value="business-training">Business Development Training</option>
+                        </select>
+                    </div>
+                `
+            }
+        };
+
+        // Open service modal
+        function openServiceModal(serviceType) {
+            const modal = document.getElementById('serviceModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const serviceFields = document.getElementById('serviceFields');
+
+            const service = serviceData[serviceType];
+            if (service) {
+                modalTitle.textContent = service.title;
+                modalDescription.textContent = service.description;
+                serviceFields.innerHTML = service.fields;
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close service modal
+        function closeServiceModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('serviceRegistrationForm').reset();
+        }
+
+        // Handle service registration
+        function handleServiceRegistration(event) {
+            event.preventDefault();
+
+            const memberId = document.getElementById('memberId').value;
+            const memberPassword = document.getElementById('memberPassword').value;
+
+            // Basic validation
+            if (!memberId || !memberPassword) {
+                alert('Please enter both Member ID and Password');
+                return;
+            }
+
+            // Simulate member validation (in real app, this would be server-side)
+            // For demo purposes, accept any non-empty credentials
+            if (memberId.length < 3 || memberPassword.length < 6) {
+                alert('Invalid credentials. Member ID must be at least 3 characters and password at least 6 characters.');
+                return;
+            }
+
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+
+            // Simulate successful registration
+            alert('Registration successful! You will receive a confirmation shortly.\n\nMember ID: ' + memberId + '\nService: ' + document.getElementById('modalTitle').textContent);
+
+            closeServiceModal();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeServiceModal();
+            }
+        }
+    </script>
+</body>
+</html>
